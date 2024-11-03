@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -55,6 +56,19 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         resultTV = findViewById(R.id.resultTV)
+    }
+
+    private val launchSomeActivity = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    )
+    { result ->
+        if (result.resultCode == RESULT_OK) {
+            val date = result.data
+            val value = date!!.getStringExtra("key")
+
+            resultTV.text = value
+        }
+
     }
 
     override fun onClick(v: View?) {
