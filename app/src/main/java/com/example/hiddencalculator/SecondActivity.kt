@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -57,6 +58,7 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener {
         resultTV = findViewById(R.id.resultTV)
     }
 
+    
     override fun onClick(v: View?) {
 
         if (firstOperandET.text.isEmpty() || secondOperandET.text.isEmpty()) {

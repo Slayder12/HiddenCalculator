@@ -54,6 +54,7 @@
             android:layout_marginEnd="2dp"
             android:background="@drawable/edittext_border"
             android:layout_weight="1"
+            android:inputType="numberDecimal"
             android:hint="Введите число"
             android:textAlignment="center" />
 
@@ -65,6 +66,7 @@
             android:layout_marginEnd="4dp"
             android:background="@drawable/edittext_border"
             android:layout_weight="1"
+            android:inputType="numberDecimal"
             android:hint="Введите число"
             android:textAlignment="center"/>
 
