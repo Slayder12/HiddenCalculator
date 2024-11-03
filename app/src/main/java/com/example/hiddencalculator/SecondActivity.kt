@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 
@@ -44,9 +43,10 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener {
         divideBTN.setOnClickListener(this)
         transferDataBTN.setOnClickListener {
             if (resultTV.text.isEmpty()) return@setOnClickListener
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent()
             intent.putExtra("key", resultTV.text.toString())
-            startActivity(intent)
+            setResult(RESULT_OK, intent)
+            finish()
         }
 
         resetBTN.setOnClickListener{
@@ -56,19 +56,6 @@ class SecondActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         resultTV = findViewById(R.id.resultTV)
-    }
-
-    private val launchSomeActivity = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    )
-    { result ->
-        if (result.resultCode == RESULT_OK) {
-            val date = result.data
-            val value = date!!.getStringExtra("key")
-
-            resultTV.text = value
-        }
-
     }
 
     override fun onClick(v: View?) {

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,19 @@ class MainActivity : AppCompatActivity() {
 
         calcBTN.setOnClickListener {
             val intent = Intent(this, SecondActivity::class.java)
-            startActivity(intent)
+            launchSomeActivity.launch(intent)
+        }
+
+    }
+
+    private val launchSomeActivity = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    )
+    { result ->
+        if (result.resultCode == RESULT_OK) {
+            val date = result.data
+            val value = date!!.getStringExtra("key")
+            resultMainTV.text = value
         }
 
     }
